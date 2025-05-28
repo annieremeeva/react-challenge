@@ -1,0 +1,30 @@
+.simple-counter
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap: 20px
+    padding: 30px
+    div
+        display: flex
+        gap: 30px
+    button
+        border-radius: 5px
+        width: 150px
+        color: #ffffff
+        font-weight: 700
+        font-size: 20px
+    &__button
+        &_increment
+            background: #145130
+        &_decrement
+            background: #6a0f1a
+        &_reset, &_save
+            background: #2a3653
+    p
+        font-size: 40px
+    &__history
+        display: flex
+        flex-direction: column
+        align-items: center
+    input
+        width: 150px
