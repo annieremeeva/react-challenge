@@ -64,7 +64,7 @@ const SimpleCounter = () => {
                 <button onClick={handleSave} className="simple-counter__button_save">Save count</button>
             </div>
             <div className="simple-counter__history">
-                <h3>Last 5 counts</h3>
+                { countHistory.length === 0 || <h3>Last 5 counts</h3>}
                 <ol>
                     { countHistory.map((item, index) => (
                         <li key={index}>{ item }</li>

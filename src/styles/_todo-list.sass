@@ -1,0 +1,50 @@
+@use 'colors' as *
+.todo-list
+    display: flex
+    flex-direction: column
+    gap: 1rem
+    padding: 20px
+    &__todo
+        display: flex
+        gap: 1em
+        &_completed
+            color: $completed-color
+            transition: 0.4s ease-in-out
+            span
+                width: fit-content
+                position: relative
+                &::after
+                    content: ""
+                    position: absolute
+                    top: 50%
+                    left: 0
+                    width: fit-content
+                    height: 0.1em
+                    background: currentColor
+                    animation: strikethrough 0.4s 1 linear forwards
+        &-item
+            display: flex
+            justify-content: space-between
+            align-items: center
+            padding: 20px 0 0
+            text-decoration: $font-color
+            width: 100%
+            
+    &__add
+        &-button
+            background: $green-button
+            font-size: 18px
+            width: 80px
+        &-form
+            display: flex
+            gap: 0.7rem
+        &-input
+            width: 100%
+    &__remove
+        &-button
+            background: $red-button
+@keyframes strikethrough
+    0%
+        width: 0
+    100%
+        width: 100%

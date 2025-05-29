@@ -1,11 +1,13 @@
 @use 'simple-counter'
+@use 'todo-list'
+@use 'colors' as *
 *
     box-sizing: border-box
     padding: 0
     margin: 0
 body
-    background: #0b1427
-    color: #ffffff
+    background: $background-color
+    color: $font-color
     font-family: Roboto, Geneva, sans-serif
     display: flex
     gap: 20px
@@ -15,12 +17,14 @@ body
 button
     border: none
     cursor: pointer
-    padding: 15px 20px
+    padding: 0.5em 0.6em
+    color: $font-color
     border-radius: 5px
+    background: $basic-button-background
 h1
     font-size: 30px
     text-align: center
-    color: #a5c7da
+    color: $header-color
 h2
     font-size: 25px
 h3
@@ -29,14 +33,44 @@ h3
     display: flex
     flex-wrap: wrap
 input
-    background: #dbddff
+    background: $input-background-color
     border: none
     outline: none
     border-radius: 5px
-    padding: 4px
+    padding: 10px
     font-size: 15px
     font-family: Roboto, Geneva, sans-serif
-    color: #3b3d77
+    color: $input-color
+    transition: 0.2s ease-in-out
     &:focus
-        outline: 3px solid #66698a
-    
+        outline: 5px solid $input-outline-color
+    &[type="checkbox"]
+        appearance: none
+        background: none
+        outline: none
+        margin: 0
+        padding: 0
+        font: inherit
+        color: currentColor
+        width: 1.15em
+        height: 1.15em
+        border: 0.15em solid currentColor
+        border-radius: 0.15em
+        transform: translateY(-0.07em)
+        display: grid
+        place-content: center
+        &::before
+            content: ""
+            width: 0.65em
+            height: 0.65em
+            transform: scale(0)
+            transition: 120ms transform ease-in-out
+            box-shadow: inset 1em 1em currentColor
+            transform-origin: bottom left
+            clip-path: polygon(20% 46%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%)
+        &:checked
+            &::before
+                transform: scale(1)
+ul
+    li
+        list-style: none
