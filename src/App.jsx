@@ -2,7 +2,6 @@ import './styles/index.sass'
 import SimpleCounter from "./components/simpleCounter.jsx";
 import ToDoList from "./components/toDoList/toDoList.jsx";
 
-
 function App() {
 
   return (

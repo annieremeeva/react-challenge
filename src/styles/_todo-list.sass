@@ -43,6 +43,19 @@
     &__remove
         &-button
             background: $red-button
+    &__button-group
+        display: flex
+        gap: 0.5em
+        button
+            width: 5em
+            min-width: fit-content
+            &[aria-pressed="true"]
+                background: $basic-button-pressed
+            &:active
+                background: $basic-button-active
+    &__edit-input
+        padding: 5px 10px
+        width: 100%
 @keyframes strikethrough
     0%
         width: 0
