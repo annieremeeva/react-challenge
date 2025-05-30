@@ -24,7 +24,7 @@ const SimpleCounter = () => {
         setDecrement(parseInt(e.target.value))
     }
     const handleCustomIncrement = (e) => {
-        setIncrement(parseInt(e.target.value))
+        setIncrement(parseInt(e.target.value) || 1)
     }
     const handleIncrement = () => {
         setCount(count => {
