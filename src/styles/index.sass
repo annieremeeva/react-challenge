@@ -1,5 +1,6 @@
 @use 'simple-counter'
 @use 'todo-list'
+@use 'color-picker'
 @use 'colors' as *
 *
     box-sizing: border-box
@@ -14,6 +15,7 @@ body
     flex-direction: column
     flex-wrap: wrap
     align-items: center
+    padding: 25px
 button
     border: none
     cursor: pointer
@@ -71,6 +73,14 @@ input
         &:checked
             &::before
                 transform: scale(1)
+    &[type="color"]
+        padding: 0
+        border: none
+        outline: none
+        border-radius: 0
+        &:focus
+            background: none
+            outline: none
 ul
     li
         list-style: none
