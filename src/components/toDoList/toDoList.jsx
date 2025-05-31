@@ -3,13 +3,16 @@ import React, {useState} from 'react';
 import Todo from "./todo.jsx";
 import FilterButton from "./filterButton.jsx";
 
-const FILTER_MAP = {
-    All: () => true,
-    Completed: () => (item) => item.completed,
-    Uncompleted: () => (item) => !item.completed,
-}
-
-const FILTER_NAMES = Object.keys(FILTER_MAP)
+// const FILTER_MAP = {
+//     All: () => true,
+//     Completed: () => (item) => item.completed,
+//     Uncompleted: () => (item) => !item.completed,
+// }
+//
+const FILTER_NAMES = {
+    All: 'all',
+    Completed:'completed',
+    Uncompleted: 'uncompleted'};
 
 const ToDoList = () => {
     const initialList = [
@@ -36,7 +39,7 @@ const ToDoList = () => {
     ]
     const [list, setList] = useState(initialList);
     const [newTodo, setNewTodo] = useState('');
-    const [filter, setFilter] = useState('All')
+    const [filter, setFilter] = useState(FILTER_NAMES.All)
     const handleAdd = (newTodo) => {
         setList([...list, {id: `todo-${nanoid()}`, text: newTodo, completed: false}]);
         setNewTodo('');
@@ -57,13 +60,17 @@ const ToDoList = () => {
         });
         setList(editedList);
     }
-    const filterList = FILTER_NAMES.map((filterName) => (
-        <FilterButton
-            key={filterName}
-            filterName={filterName}
-            isPressed={filterName === filter}
-            setFilter={() => setFilter(filterName)} />
-    ))
+
+    const filteredList = list.filter( todo => {
+        switch (filter) {
+            case FILTER_NAMES.All: return true;
+            case FILTER_NAMES.Completed: return todo.completed;
+            case FILTER_NAMES.Uncompleted: return !todo.completed;
+        }
+    })
+
+    const filterValues = Object.values(FILTER_NAMES);
+
     return(
         <div className="todo-list">
             <h2>2. Dynamic List of Items with Strikethrough</h2>
@@ -72,10 +79,16 @@ const ToDoList = () => {
                 <button type={"button"} onClick={()=> handleAdd(newTodo)} className="todo-list__add-button">Add</button>
             </form>
             <div className="todo-list__button-group">
-                {filterList}
+                {filterValues.map((filterName) => (
+                    <FilterButton
+                        key={filterName}
+                        filterName={filterName}
+                        isPressed={filterName === filter}
+                        setFilter={() => setFilter(filterName)} />
+                ))}
             </div>
             <ul className="todo-list__list">
-                {list.filter(FILTER_MAP[filter]).map((todo, index) => (
+                {filteredList.map((todo, index) => (
                    <Todo
                        key={index}
                        text={todo.text}
