@@ -1,21 +1,15 @@
 import { nanoid } from 'nanoid';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Todo from "./todo.jsx";
 import FilterButton from "./filterButton.jsx";
 
-// const FILTER_MAP = {
-//     All: () => true,
-//     Completed: () => (item) => item.completed,
-//     Uncompleted: () => (item) => !item.completed,
-// }
-//
 const FILTER_NAMES = {
     All: 'all',
     Completed:'completed',
     Uncompleted: 'uncompleted'};
 
 const ToDoList = () => {
-    const initialList = JSON.parse(localStorage.getItem('list'))  [
+    const initialList = JSON.parse(localStorage.getItem('list')) || [
         {
             id: `todo-${nanoid()}`,
             text: 'Wash the dishes',
