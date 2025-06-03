@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Todo from "./todo.jsx";
 import FilterButton from "./filterButton.jsx";
 
@@ -15,7 +15,7 @@ const FILTER_NAMES = {
     Uncompleted: 'uncompleted'};
 
 const ToDoList = () => {
-    const initialList = [
+    const initialList = JSON.parse(localStorage.getItem('list'))  [
         {
             id: `todo-${nanoid()}`,
             text: 'Wash the dishes',
@@ -41,15 +41,21 @@ const ToDoList = () => {
     const [newTodo, setNewTodo] = useState('');
     const [filter, setFilter] = useState(FILTER_NAMES.All)
     const handleAdd = (newTodo) => {
-        setList([...list, {id: `todo-${nanoid()}`, text: newTodo, completed: false}]);
+        const newTodoList = [...list, {id: `todo-${nanoid()}`, text: newTodo, completed: false}]
+        setList(newTodoList);
         setNewTodo('');
+        localStorage.setItem('list', JSON.stringify(newTodoList));
     }
     const handleListToggle = (index) => {
-        setList(list.map((item, i) =>
-            i === index ? { ...item, completed: !item.completed } : item));
+        const toggledList = list.map((item, i) =>
+            i === index ? { ...item, completed: !item.completed } : item)
+        setList(toggledList);
+        localStorage.setItem('list', JSON.stringify(toggledList));
     }
     const handleDelete = (id) => {
-        setList((list) => list.filter((item) => id !== item.id));
+        const deletedList = list.filter((item) => id !== item.id);
+        setList(deletedList);
+        localStorage.setItem('list', JSON.stringify(deletedList));
     }
     const handleEdit = (id, newText) => {
         const editedList = list.map((item) => {
@@ -59,6 +65,7 @@ const ToDoList = () => {
             return item;
         });
         setList(editedList);
+        localStorage.setItem('list', JSON.stringify(editedList));
     }
 
     const filteredList = list.filter( todo => {
@@ -70,7 +77,6 @@ const ToDoList = () => {
     })
 
     const filterValues = Object.values(FILTER_NAMES);
-
     return(
         <div className="todo-list">
             <h2>2. Dynamic List of Items with Strikethrough</h2>

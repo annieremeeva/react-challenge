@@ -16,6 +16,7 @@ body
     flex-wrap: wrap
     align-items: center
     padding: 25px
+    width: 100%
 button
     border: none
     cursor: pointer
@@ -31,9 +32,12 @@ h2
     font-size: 25px
 h3
     font-size: 20px
-.main-wrapper
+.app
     display: flex
-    flex-wrap: wrap
+    flex-direction: column
+    gap: 20px
+    width: 100%
+    max-width: 1000px
 input
     background: $input-background-color
     border: none
@@ -84,3 +88,13 @@ input
 ul
     li
         list-style: none
+select
+    width: 100%
+    padding: 10px
+    border-radius: 5px
+    font-family: Roboto, Geneva, sans-serif
+    color: $input-color
+    background: $input-background-color
+    font-size: 15px
+    &:focus
+        outline: 5px solid $input-outline-color

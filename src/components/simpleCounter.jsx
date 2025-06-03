@@ -1,5 +1,6 @@
 import React, {useRef, useState} from 'react';
 
+
 const SimpleCounter = () => {
     const initialCountHistory = [];
     const [countHistory, setCountHistory] = useState(initialCountHistory);
