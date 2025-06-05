@@ -1,5 +1,5 @@
 import './styles/index.sass'
-import {NavLink, Link, Outlet, useLocation} from 'react-router-dom';
+import {NavLink, Outlet, useLocation} from 'react-router-dom';
 import {useRef} from "react";
 function App() {
     const puzzles = [
@@ -15,6 +15,10 @@ function App() {
             route: '/color-picker',
             title: '3. Color Picker',
         },
+        {
+            route: '/password-strength-checker',
+            title: '4. Password Strength Checker',
+        },
     ]
     const location = useLocation();
     const currentPath = location.pathname;
@@ -27,7 +31,11 @@ function App() {
     return (
         <div className="app">
             <div className="app__header">
-                <button className="app__toggle-button" type='button' onClick={toggleSidebar}><span className="app__toggle-lines"></span></button>
+                <button className="app__toggle-button" type='button' onClick={toggleSidebar}><div className="app__toggle-lines">
+                    <span className="app__toggle-line_top"></span>
+                    <span className="app__toggle-line_middle"></span>
+                    <span className="app__toggle-line_bottom"></span>
+                </div></button>
                 <h1 className="app__header-text">
                     React Challenge
                 </h1>
