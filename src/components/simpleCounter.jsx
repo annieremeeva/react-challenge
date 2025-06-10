@@ -50,7 +50,6 @@ const SimpleCounter = () => {
     }
     return (
         <div className="simple-counter">
-            <h2>1. Simple Counter </h2>
             <p ref={counterRef}>{count}</p>
             <div className="simple-counter__buttons">
                 <button className='simple-counter__button simple-counter__button_decrement' onClick={handleDecrement}>-</button>

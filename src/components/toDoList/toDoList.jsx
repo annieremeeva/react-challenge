@@ -73,7 +73,6 @@ const ToDoList = () => {
     const filterValues = Object.values(FILTER_NAMES);
     return(
         <div className="todo-list">
-            <h2>2. Dynamic List of Items with Strikethrough</h2>
             <form className="todo-list__add-form">
                 <input onChange={(e) => setNewTodo(e.target.value)} value={newTodo} className="todo-list__add-input" type="text" placeholder="Enter to do"/>
                 <button type={"button"} onClick={()=> handleAdd(newTodo)} className="todo-list__add-button">Add</button>

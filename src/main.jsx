@@ -6,6 +6,7 @@ import ColorPicker from "./components/colorPicker.jsx";
 import SimpleCounter from "./components/simpleCounter.jsx";
 import ToDoList from "./components/toDoList/toDoList.jsx";
 import PasswordStrengthChecker from "./components/passwordStrengthChecker.jsx";
+import CountdownTimer from "./components/CountdownTimerWithAudio/CountdownTimer.jsx";
 
 createRoot(document.getElementById('root')).render(
 
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')).render(
                   <Route path="/counter" element={<SimpleCounter />} />
                   <Route path="/color-picker" element={<ColorPicker />} />
                   <Route path="/password-strength-checker" element={<PasswordStrengthChecker />} />
+                  <Route path="/countdown-timer" element={<CountdownTimer />} />
               </Route>
 
           </Routes>

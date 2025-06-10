@@ -19,12 +19,17 @@ function App() {
             route: '/password-strength-checker',
             title: '4. Password Strength Checker',
         },
+        {
+            route: '/countdown-timer',
+            title: '5. Countdown Timer',
+        },
     ]
     const location = useLocation();
     const currentPath = location.pathname;
     const index = puzzles.findIndex((item) => item.route === currentPath);
     const sidebarNav = useRef(null);
     const bottomNav = useRef(null);
+    const isRoot = currentPath === '/';
     const toggleSidebar = () => {
         sidebarNav.current.classList.toggle('app__nav_sidebar-active');
     }
@@ -49,6 +54,7 @@ function App() {
 
 
                 <div className="app__content">
+                    {!isRoot && <h2>{puzzles[index].title}</h2>}
                     <Outlet/>
                     <nav ref={bottomNav} className="app__nav_bottom">
                         {
