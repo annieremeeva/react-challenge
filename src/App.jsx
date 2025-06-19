@@ -23,6 +23,11 @@ function App() {
             route: '/countdown-timer',
             title: '5. Countdown Timer',
         },
+        {
+            route: '/countdown-timer/quiz',
+            title: '5.1. Quiz',
+        },
+
     ]
     const location = useLocation();
     const currentPath = location.pathname;

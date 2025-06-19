@@ -1,7 +1,7 @@
 @use 'mixins/media-queries' as *
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700')
 
-@mixin scale_timer($scale)
+=scale_timer($scale)
     $x: $scale
     width: 35vmin * $x
     height: 35vmin * $x
@@ -10,17 +10,23 @@
     text-shadow: (2.5vmin * $x) (2.5vmin * $x) (5vmin * $x) rgba(black, 0.125)
 .countdown-timer
     $timer_unit: 1s
-    $timer_length: 10
+    $timer_length: 15
     $timer_delay: 0s
     $starting_hue: 160
     $hue_increment: calc(360 / $timer_length)
-    position: relative
-    height: 70vh
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    border-radius: 50%
     background-color: hsl($starting_hue * 1deg, 80%, 60%)
     font-family: 'Montserrat', sans-serif
+    +scale_timer(1.26)
+    +phone
+        +scale_timer(1.01)
+    
     &_animation
-        animation:  ($timer_delay - $timer_unit * 0.125) cubic-bezier(0.9, 0, 0.1, 1) forwards background_color
-        animation-duration: ($timer_unit * $timer_length)
+        animation: ($timer_unit * $timer_length) ($timer_delay - $timer_unit * 0.125) cubic-bezier(0.9, 0, 0.1, 1) forwards background_color
     @at-root
         @keyframes background_color
             @for $i from 1 through $timer_length + 1
@@ -74,3 +80,10 @@
                     @keyframes timer_indicator
                         100%
                             transform: translateY(100%)
+    &__container
+        position: relative
+        width: 100%
+        height: 70vh
+        display: flex
+        flex-direction: column
+        justify-content: space-between
