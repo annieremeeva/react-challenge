@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import QuizSlide from "./quizSlide.jsx";
+import Timer from "../timer.jsx";
 
 const Quiz = () => {
+    const audioSrc = '../../../src/assets/alarm-1.mp3'
     const slides = [
         {
             question: "What is the Weasley’s owl called?",
@@ -23,12 +25,23 @@ const Quiz = () => {
         }
     ]
     const [score, setScore] = useState(0);
+    const [needsReset, setNeedsReset] = useState(false);
+    const updateScore = (newValue) => {
+        setScore(newValue);
+    }
+    const updateNeedsReset = (newValue) => {
+        setNeedsReset(newValue);
+        console.log(needsReset);
+    }
     return (
         <div>
             {slides.map((slide, index) => (
-                <QuizSlide key={index} slide={slide} />
+                <QuizSlide key={index} updateNeedsReset={updateNeedsReset} updateScore={updateScore} slide={slide} />
             ))}
+            <Timer className="quiz__timer" needsReset={needsReset} audioSrc={audioSrc} />
+            {score}
         </div>
+
     );
 };
 

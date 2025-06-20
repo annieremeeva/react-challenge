@@ -1,10 +1,17 @@
 import React from 'react';
 
-const QuizAnswer = ({answer, correct, updateScore, score}) => {
-    
-    return (
-        <button className="quiz-slide__answer" onClick={updateScore}>
+const QuizAnswer = ({answer, onUpdateScore, onHandleAnswerClick, answerClicked, onUpdateNeedsReset}) => {
+    const handleCheckAnswer = () => {
+        if (!answerClicked && answer.correct) {
+            onUpdateScore(prevScore => prevScore + 1);
 
+        }
+        onHandleAnswerClick();
+        onUpdateNeedsReset(true);
+    }
+    return (
+        <button className="quiz-slide__answer" onClick={handleCheckAnswer}>
+            {answer.text}
         </button>
     );
 };
